@@ -11,6 +11,7 @@ import Banner from "./Banner";
 
 const Home = async () => {
   const allBlogs = await getAllBlogs();
+
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -21,12 +22,11 @@ const Home = async () => {
             <Link
               className={cx(
                 "flex sm:flex-row flex-col justify-between",
-                "p-4 rounded bg-white text-black",
+                "p-4 mb-4 rounded bg-white text-black",
                 "border-t border-slate-300",
-                "hover:shadow",
-                "group",
+                "group hover:shadow",
               )}
-              href={`/blog/${id}`}
+              href={`/blog/${id}/main`}
               key={`blog-${id}`}
             >
               {coverUrl && (

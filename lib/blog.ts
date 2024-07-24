@@ -6,14 +6,14 @@ import markdownIt from "markdown-it";
 import { BlogData } from "@/domain/blog";
 
 const MD_DIR = "md";
-const DEFAULT_MD = "main.md";
+const DEFAULT_MD = "main";
 
 const getBlog = async (
   dirName: string,
-  fileName: string = DEFAULT_MD,
+  fileName: string,
 ): Promise<BlogData> => {
   const mdDirectory = path.join(process.cwd(), MD_DIR);
-  const filePath = path.join(mdDirectory, `${dirName}/${fileName}`);
+  const filePath = path.join(mdDirectory, `${dirName}/${fileName}.md`);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContent);
   const { title, createdAt, summary, coverUrl } = data;
@@ -35,7 +35,7 @@ const getBlog = async (
 const getAllBlogs = async (): Promise<BlogData[]> => {
   const mdDirectory = path.join(process.cwd(), MD_DIR);
   const result = await Promise.all(
-    fs.readdirSync(mdDirectory).map((dirName) => getBlog(dirName)),
+    fs.readdirSync(mdDirectory).map((dirName) => getBlog(dirName, DEFAULT_MD)),
   );
 
   return result.sort(

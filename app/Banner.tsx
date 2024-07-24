@@ -9,32 +9,18 @@ const Banner = () => {
         <div className="text-2xl">
           聚焦社会不公事件，为弱势团体发声，互联网不会忘记。
         </div>
-        <div className="py-4 text-lg">
-          Focus on events of social injustice. The internet will remember.
-        </div>
         <div className="py-4">
           本网<span className="italic">长期储存并不定期追踪</span>
-          已证实且极恶劣的 社会不公事件。
+          已证实且恶劣的社会不公事件。
         </div>
         <div className="">
-          我们需要更多的人帮助填补信息，详情点击
+          希望文案编辑能力强，有社会责任感的人加入本网信息的持续完善中。详情请看
           <Link
-            href="https://github.com/johnhuichen/outrage"
+            href="blog/人大教授性骚扰事件远未结束和建立本网的初衷/main"
             target="_blank"
             className="text-sky-300 px-1 hover:text-sky-500"
           >
-            Outrage Github
-          </Link>
-        </div>
-        <div className="">
-          We need your contribution to add more content to the website, for more
-          information click
-          <Link
-            href="https://github.com/johnhuichen/outrage"
-            target="_blank"
-            className="text-sky-300 px-1 hover:text-sky-500"
-          >
-            Outrage Github
+            人大教授性骚扰事件远未结束和建立本网的初衷
           </Link>
         </div>
       </BodyColumn>
