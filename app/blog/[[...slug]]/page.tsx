@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import cx from "classnames";
 
 import { getBlog } from "@/lib/blog";
@@ -6,11 +7,28 @@ import BodyColumn from "@/components/layout/BodyColumn";
 import Footer from "@/components/widgets/Footer";
 import BackButton from "@/components/widgets/BackButton";
 
-const BlogPage = async ({
-  params: { slug },
-}: {
+type PageProps = {
   params: { slug: string[] };
-}) => {
+};
+
+export const generateMetadata = async ({
+  params: { slug },
+}: PageProps): Promise<Metadata> => {
+  const [id, fileName] = slug;
+  const { title, summary } = await getBlog(
+    decodeURIComponent(id),
+    decodeURIComponent(fileName),
+  );
+
+  return {
+    title: `${title} | Outrage`,
+    description: summary,
+    keywords: [],
+    // openGraph: {},
+  };
+};
+
+const BlogPage = async ({ params: { slug } }: PageProps) => {
   const [id, fileName] = slug;
   const { title, content } = await getBlog(
     decodeURIComponent(id),
@@ -41,6 +59,7 @@ const BlogPage = async ({
             "[&_td]:px-4 [&_td]:py-2",
             "[&_td]:border-r-[1px] [&_td]:border-r-slate-300 [&_td:last-child]:border-r-0",
             "[&_tr]:border-b-[1px] [&_tr]:border-b-slate-300 [&_tr:last-child]:border-b-0",
+            "[&_li]:list-disc [&_li]:mb-1",
           )}
           dangerouslySetInnerHTML={{ __html: content }}
         />
